@@ -1,0 +1,81 @@
+.container {
+  background: url("../../assets/shutterstock_2189773743\ 1.png");
+  /* background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover; */
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+.logo {
+  position: absolute;
+  width: 236px;
+  height: 38px;
+  left: 70px;
+  top: 25px;
+}
+.bottom-line {
+  position: absolute;
+  height: 0px;
+  left: 70px;
+  right: 70px;
+  top: 89px;
+  border: 1px solid #1a1a1a;
+}
+.btn-container {
+  /* color: white;
+  font-weight: 500; */
+  z-index: 2;
+
+  /* Auto layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 60px;
+  gap: 20px;
+
+  position: absolute;
+  width: 464px;
+  height: 60px;
+  left: calc(50% - 464px / 2);
+  top: 513px;
+
+  /* off black */
+
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+.btn {
+  width: 212px;
+  height: 24px;
+  background-color: #1a1a1a;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.redberry-second-logo {
+  z-index: 1;
+  position: absolute;
+  width: 299px;
+  height: 299px;
+  left: 1076px;
+  top: 473px;
+
+  background: url("../../assets/LOGO-40 1.png");
+  mix-blend-mode: multiply;
+}
