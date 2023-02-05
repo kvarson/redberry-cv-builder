@@ -5,6 +5,7 @@ import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import PhoneIcon from "@mui/icons-material/Phone";
+
 const Personal = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -18,6 +19,14 @@ const Personal = () => {
   const [numberValid, setNumberValid] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
 
+  const formatedNumber =
+    number.slice(0, 4) +
+    " " +
+    number.slice(4, 7) +
+    " " +
+    number.slice(7, 10) +
+    " " +
+    number.slice(10, 13);
   const handleNameChange = (e) => {
     setName(e.target.value);
     const geoRegex = /^[ა-ჰ]+$/g;
@@ -65,6 +74,17 @@ const Personal = () => {
     console.log(e.target.files[0]);
     setUploadedImage(URL.createObjectURL(e.target.files[0]));
     console.log(URL.createObjectURL(e.target.files[0]));
+  };
+  const handleNextButtonClick = () => {
+    // if validated
+
+    localStorage.setItem("name", name);
+    localStorage.setItem("surname", surname);
+    localStorage.setItem("aboutMe", aboutMe);
+    localStorage.setItem("email", email);
+    localStorage.setItem("number", number);
+    localStorage.setItem("uploadedImage", uploadedImage);
+    // navigate to the experience page
   };
 
   const fileUploadHandler = () => {};
@@ -228,7 +248,9 @@ const Personal = () => {
           </div>
 
           <button className='next-btn'>
-            <span className='next-span'>შემდეგი</span>
+            <span className='next-span' onClick={handleNextButtonClick}>
+              შემდეგი
+            </span>
           </button>
         </form>
       </div>
@@ -252,7 +274,7 @@ const Personal = () => {
             >
               <PhoneIcon />
             </span>
-            <p className='number-output'>{number}</p>
+            <p className='number-output'>{formatedNumber}</p>
           </div>
         </div>
 

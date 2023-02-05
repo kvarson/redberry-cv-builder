@@ -1,6 +1,8 @@
 .experience-container {
   width: 1098px;
   height: 1080px;
+
+  overflow: scroll;
 }
 
 .experience-header-text {
@@ -407,7 +409,7 @@
   height: 48px;
   right: 972px;
   bottom: 65px;
-
+  border: none;
   background: #6b40e3;
   border-radius: 4px;
 }
@@ -434,4 +436,141 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+.position-check-circle {
+  position: absolute;
+  left: 790px;
+  top: 35px;
+  color: #98e37e;
+}
+.position-error-icon {
+  position: absolute;
+  left: 830px;
+  top: 35px;
+  color: #f02424;
+}
+.border-success {
+  border: 1px solid #98e37e;
+}
+.border-unsuccess {
+  border: 1px solid #f02424;
+}
+.bottom-line-after-about-me {
+  position: absolute;
+  width: 662px;
+  height: 0px;
+  right: 80px;
+  top: 341px;
+
+  border: 1px solid #c8c8c8;
+}
+.experience-output-text {
+  position: absolute;
+  width: 143px;
+  height: 22px;
+  left: 80px;
+  top: 365px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+
+  color: #f93b1d;
+}
+.position-output-text {
+  position: absolute;
+  /* width: 178px; */
+  height: 20px;
+  left: 80px;
+  top: 402px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+  /* off black */
+
+  color: #1a1a1a;
+}
+.experience-starting-ending-output {
+  position: absolute;
+  width: 183px;
+  height: 19px;
+  left: 80px;
+  top: 429px;
+
+  font-family: "Helvetica Neue";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #919191;
+}
+.description-output-fixed {
+  /* padding: 13px 16px; */
+  overflow-wrap: break-word;
+  position: absolute;
+  left: 80px;
+  top: 464px;
+  /* border: 1px solid black; */
+  width: 600px;
+  height: 66px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  /* or 138% */
+  text-transform: capitalize;
+  color: #000000;
+}
+.position-container-two {
+  position: absolute;
+  left: 126px;
+  top: 788px;
+}
+.position-text-two {
+  width: 798px;
+  height: 21px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  /* identical to box height, or 131% */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.employer-container-two {
+  position: absolute;
+  left: 126px;
+  top: 925px;
+}
+.experience-added-form-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 680px;
+  left: 0px;
+}
+.experience-added-form-item {
 }
