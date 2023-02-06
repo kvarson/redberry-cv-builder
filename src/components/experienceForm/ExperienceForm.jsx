@@ -2,13 +2,20 @@ import React, { useState } from "react";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
-
-const ExperienceForm = ({}) => {
-  const [position, setPosition] = useState("");
-  const [employer, setEmployer] = useState("");
-  const [startingDate, setStartingDate] = useState("");
-  const [endingDate, setEndingDate] = useState("");
-  const [description, setDescription] = useState("");
+import "./experienceForm.css";
+import ExperienceFormOutput from "../experienceFormOutput/ExperienceFormOutput";
+const ExperienceForm = ({
+  position,
+  setPosition,
+  employer,
+  setEmployer,
+  setStartingDate,
+  startingDate,
+  setEndingDate,
+  endingDate,
+  description,
+  setDescription,
+}) => {
   const handlePositionChange = (e) => {
     setPosition(e.target.value);
   };
@@ -27,65 +34,66 @@ const ExperienceForm = ({}) => {
   };
   return (
     <div>
-      <>
-        <div className='position-container'>
-          <p className='position-text-two'>თანამდებობა</p>
+      <div>
+        <div className='position-container-remastered'>
+          <p className='position-text-remastered'>თანამდებობა</p>
           <input
             onChange={(e) => handlePositionChange(e)}
             value={position}
-            className='position-input'
+            className='position-input-remastered'
             placeholder='დეველოპერი, დიზაინერი, ა.შ'
             type='text'
           />
-          <CheckCircleIcon className='position-check-circle' />
-          <ReportProblemIcon className='position-error-icon' />
-          <p className='position-min-req'>მინიმუმ 2 სიმბოლოსგან</p>
+          <CheckCircleIcon className='position-check-circle-remastered' />
+          <ReportProblemIcon className='position-error-icon-remastered' />
+          <p className='position-min-req-remastered'>მინიმუმ 2 სიმბოლოსგან</p>
         </div>
 
-        <div className='employer-container'>
-          <p className='employer-text'>დამსაქმებელი</p>
+        <div className='employer-container-remastered'>
+          <p className='employer-text-remastered'>დამსაქმებელი</p>
           <input
             value={employer}
             onChange={(e) => handleEmployerChange(e)}
             placeholder='დამსაქმებელი'
-            className='employer-input'
+            className='employer-input-remastered'
             type='text'
           />
-          <CheckCircleIcon className='position-check-circle' />
-          <ReportProblemIcon className='position-error-icon' />
-          <p className='employer-min-req'>მინიმუმ 2 სიმბოლოსგან</p>
+          <CheckCircleIcon className='position-check-circle-remastered' />
+          <ReportProblemIcon className='position-error-icon-remastered' />
+          <p className='employer-min-req-remastered'>მინიმუმ 2 სიმბოლოსგან</p>
         </div>
-
-        <div className='starting-date-container'>
-          <p className='starting-date-text'>დაწყების რიცხვი</p>
-          <input
-            onChange={(e) => handleStartingDateChange(e)}
-            className='starting-date-input'
-            type='date'
-            placeholder='MM / DD / YYYY'
-          />
+        <div className='starting-ending-date-container-remastered'>
+          <div className='starting-date-container-remastered'>
+            <p className='starting-date-text-remastered'>დაწყების რიცხვი</p>
+            <input
+              onChange={(e) => handleStartingDateChange(e)}
+              className='starting-date-input-remastered'
+              type='date'
+              placeholder='MM / DD / YYYY'
+            />
+          </div>
+          <div className='ending-date-container-remastered'>
+            <p className='ending-date-text-remastered'>დამთავრების რიცხვი</p>
+            <input
+              onChange={(e) => handleEndingDateChange(e)}
+              className='ending-date-input-remastered'
+              placeholder='MM / DD / YYYY'
+              type='date'
+            />
+          </div>
         </div>
-        <div className='ending-date-container'>
-          <p className='ending-date-text'>დამთავრების რიცხვი</p>
-          <input
-            onChange={(e) => handleEndingDateChange(e)}
-            className='ending-date-input'
-            placeholder='MM / DD / YYYY'
-            type='date'
-          />
-        </div>
-
-        <div className='description-container'>
-          <p className='description-text'>აღწერა</p>
+        <div className='description-container-remastered'>
+          <p className='description-text-remastered'>აღწერა</p>
           <textarea
             onChange={(e) => handleDescriptionChange(e)}
-            className='description-input'
+            className='description-input-remastered'
             placeholder='როლი თანამდებობაზე და ზოგადი აღწერა'
             type='text'
           />
         </div>
-        <div className='bottom-border'></div>
-      </>
+      </div>
+
+      <div className='bottom-border-form-remastered'></div>
     </div>
   );
 };

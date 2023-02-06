@@ -1,0 +1,162 @@
+.output-container-remastered {
+  width: 822px;
+  height: 1080px;
+  background: #ffffff;
+}
+.firstname-output-container-remastered {
+  margin-left: 80px;
+  margin-top: 68px;
+  height: 42px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 42px;
+  /* identical to box height */
+
+  color: #f93b1d;
+}
+.email-output-container-remastered {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  /* justify-content: center; */
+}
+.email-icon-mui-remastered {
+  margin-top: 20px;
+  margin-left: 82px;
+  color: #898989;
+}
+.email-output-remastered {
+  margin-top: 18px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  /* off black */
+  color: #1a1a1a;
+}
+.phone-output-container-remastered {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.number-mui-icon-remastered {
+  margin-top: 13px;
+  margin-left: 82px;
+  color: #898989;
+}
+.number-output-remastered {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+
+  /* off black */
+
+  color: #1a1a1a;
+}
+.about-me-output-header-remastered {
+  margin-top: 34px;
+  margin-left: 80px;
+  width: 118px;
+  height: 22px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+
+  color: #f93b1d;
+}
+.about-me-output-remastered {
+  margin-top: 15px;
+  margin-left: 80px;
+  width: 432px;
+  height: 72px;
+  overflow-wrap: break-word;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  /* or 138% */
+
+  text-transform: lowercase;
+
+  color: #000000;
+}
+.bottom-line-after-about-me-remastered {
+  margin-top: 19px;
+  margin-left: 80px;
+  width: 662px;
+  height: 0px;
+  border: 1px solid #c8c8c8;
+}
+
+.experience-output-container-form-remastered {
+}
+.experience-output-text-form-remastered {
+  /* margin-top: 24px;
+  margin-left: 80px; */
+}
+.experience-output-text-form-remastered {
+  margin-top: 24px;
+  margin-left: 80px;
+  width: 143px;
+  height: 22px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  color: #f93b1d;
+}
+.position-output-text-input-form-remastered {
+  margin-top: 15px;
+  margin-left: 80px;
+  height: 20px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+  /* off black */
+
+  color: #1a1a1a;
+}
+.experience-starting-ending-output-form-remastered {
+  margin-top: 7px;
+  margin-left: 80px;
+  height: 19px;
+
+  font-family: "Helvetica Neue";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #919191;
+}
+.description-output-form-remastered {
+  margin-left: 80px;
+  margin-top: 16px;
+  overflow-wrap: break-word;
+  width: 662px;
+  /* height: 66px; */
+}
+.border-line-for-experience {
+  border: 1px solid #c8c8c8;
+  margin-left: 80px;
+  width: 662px;
+  margin-top: 20px;
+}

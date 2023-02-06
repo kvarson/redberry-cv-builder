@@ -1,0 +1,104 @@
+.layout-flex-container-remastered {
+  display: flex;
+}
+.forms-container-remastered {
+  width: 1098px;
+  height: 1080px;
+  overflow-y: scroll;
+  background-color: #f9f9f9;
+}
+
+.experience-header-remastered {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 47px;
+  padding-left: 140px;
+  padding-right: 140px;
+}
+.experience-header-text-remastered {
+  width: 190px;
+  height: 29px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+
+  /* off black */
+
+  color: #1a1a1a;
+}
+.experience-header-page-number-remastered {
+  width: 29px;
+  height: 24px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #1a1a1a;
+}
+.back-chevron-left-remastered {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 48px;
+  top: 45px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+.bottom-line-for-header-remastered {
+  margin-top: 12px;
+  margin-left: 142px;
+  width: 798px;
+  border: 1px solid #1a1a1a;
+}
+.add-more-experience-remastered {
+  margin-top: 45px;
+  margin-left: 149px;
+  border: none;
+  padding: 18px 60px;
+  /* width: 289px; */
+  height: 48px;
+  color: white;
+  background: #62a1eb;
+  border-radius: 4px;
+  display: block;
+}
+.go-back-button-remastered {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+  letter-spacing: 0.08em;
+  width: 113px;
+  height: 48px;
+  margin-top: 115px;
+  margin-left: 149px;
+  padding: 14px 30px;
+  background: #6b40e3;
+  border-radius: 4px;
+  color: white;
+  border: none;
+}
+.go-next-button-remastered {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+  letter-spacing: 0.08em;
+  width: 113px;
+  height: 48px;
+  margin-top: 115px;
+  margin-left: 534px;
+  padding: 14px 20px;
+  background: #6b40e3;
+  border-radius: 4px;
+  color: white;
+  border: none;
+}

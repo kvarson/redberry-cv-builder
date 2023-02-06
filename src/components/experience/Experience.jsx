@@ -16,7 +16,7 @@ const Experience = () => {
   const [description, setDescription] = useState("");
 
   const handleAddForm = () => {
-    setForms([...forms, "<ExperienceForm />"]);
+    setForms([...forms, "count"]);
     console.log(forms);
   };
   const name = localStorage.getItem("name");
@@ -94,21 +94,6 @@ const Experience = () => {
         </div>
 
         <div className='bottom-line-after-about-me'></div>
-        <div className='experience-output-container'>
-          <p className='experience-output-text'>
-            {position ? "გამოცდილება" : ""}
-          </p>
-          <p className='position-output-text'>
-            {position ? `${position},` : ""} {employer}
-          </p>
-        </div>
-
-        <div className='experience-starting-ending-output'>
-          {startingDate.replaceAll("-", "/")} {startingDate ? "-" : ""}{" "}
-          {endingDate.replaceAll("-", "/")}
-        </div>
-
-        <div className='description-output-fixed'>{description}</div>
       </div>
 
       <button className='go-back-button'>
