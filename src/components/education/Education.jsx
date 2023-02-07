@@ -7,7 +7,7 @@ const Education = () => {
   const [educationInputs, setEducationInputs] = useState([
     { facility: "", degree: "", studyEnding: "", studyDescription: "" },
   ]);
-
+  console.log(educationInputs);
   const addEducation = () => {
     setEducationInputs([
       ...educationInputs,
@@ -30,12 +30,23 @@ const Education = () => {
           </div>
           <ChevronLeftOutlinedIcon className='back-chevron-left-remastered' />
           {educationInputs.map((educ, index) => {
-            return <EducationForm key={index} index={index} />;
+            return (
+              <EducationForm
+                key={index}
+                index={index}
+                educationInputs={educationInputs}
+                setEducationInputs={setEducationInputs}
+              />
+            );
           })}
 
           <button className='add-more-education-btn' onClick={addEducation}>
             სხვა სასწავლებლის დამატება
           </button>
+          <div className='button-container'>
+            <button className='go-back-btn'>უკან</button>
+            <button className='end-btn'>დასრულება</button>
+          </div>
         </div>
 
         <div className='education-output-container'>
