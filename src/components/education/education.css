@@ -1,0 +1,74 @@
+.education-flex {
+  display: flex;
+  background-color: #f9f9f9;
+  overflow-y: scroll;
+}
+.education-form-container {
+  width: 1098px;
+  height: 1080px;
+}
+
+.education-header {
+  margin-top: 48px;
+  margin-left: 149px;
+  margin-right: 149px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.education-header-text {
+  width: 153px;
+  height: 29px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  /* off black */
+  color: #1a1a1a;
+}
+.education-header-page {
+  width: 29px;
+  height: 24px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  /* identical to box height */
+
+  /* off black */
+  color: #1a1a1a;
+}
+.education-header-bottom-line {
+  width: 798px;
+  height: 0px;
+  margin-left: 149px;
+  margin-top: 12px;
+  border: 1px solid #1a1a1a;
+}
+
+.add-more-education-btn {
+  color: white;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 45px;
+  margin-left: 149px;
+  padding: 9px 30px;
+  /* width: 289px; */
+  height: 48px;
+  background: #62a1eb;
+  border-radius: 4px;
+  border: none;
+}
+.education-output-container {
+  width: 822px;
+  height: 1080px;
+  background: #fff;
+  overflow-y: scroll;
+}

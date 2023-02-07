@@ -1,19 +1,10 @@
-import React, { useEffect } from "react";
-import "./experienceFormOutput.css";
+import React from "react";
+
 import PhoneIcon from "@mui/icons-material/Phone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import MappedForms from "../MappedForms/MappedForms";
-const ExperienceFormOutput = ({
-  position,
-  employer,
-  startingDate,
-  endingDate,
-  description,
-  forms,
-  inputs,
-  renderCount,
-  setRenderCount,
-}) => {
+import MappedFormsForEducation from "../mappedFormsForEducation/MappedFormsForEducation";
+const EducationOutput = () => {
   const name = localStorage.getItem("name");
   const surname = localStorage.getItem("surname");
   const aboutMe = localStorage.getItem("aboutMe");
@@ -21,13 +12,12 @@ const ExperienceFormOutput = ({
   const email = localStorage.getItem("email");
   const uploadedImage = localStorage.getItem("uploadedImage");
 
-  useEffect(() => {
-    setRenderCount(renderCount + 1);
-    console.log(renderCount);
-  }, []);
-  //   setRenderCount(renderCount + 1);
-  // }
-  // console.log(renderCount);
+  const experienceInputs = localStorage.getItem("formData");
+
+  const experienceData = experienceInputs ? JSON.parse(experienceInputs) : [];
+
+  console.log(experienceData);
+
   const formatedNumber =
     number.slice(0, 4) +
     " " +
@@ -37,9 +27,8 @@ const ExperienceFormOutput = ({
     " " +
     number.slice(10, 13);
 
-  // console.log(forms);
   return (
-    <>
+    <div>
       <div className='output-container-remastered'>
         <p className='firstname-output-container-remastered'>
           {name} {surname}
@@ -91,30 +80,20 @@ const ExperienceFormOutput = ({
           </p>
           <p className='about-me-output-remastered'>{aboutMe}</p>
         </div>
+        {experienceData.map((exp, index) => {
+          return (
+            <MappedFormsForEducation
+              experienceData={experienceData}
+              key={index}
+              index={index}
+            />
+          );
+        })}
 
-        <div className='bottom-line-after-about-me-remastered'></div>
-
-        {position && <div className='border-line-for-experience'></div>}
-
-        {inputs.length > 0 &&
-          inputs.map((form, index) => {
-            return (
-              <MappedForms
-                inputs={inputs}
-                key={index}
-                index={index}
-                forms={forms}
-                position={position}
-                employer={employer}
-                startingDate={startingDate}
-                endingDate={endingDate}
-                description={description}
-              />
-            );
-          })}
+        {/* <div className='bottom-line-after-about-me-remastered'></div> */}
       </div>
-    </>
+    </div>
   );
 };
 
-export default ExperienceFormOutput;
+export default EducationOutput;

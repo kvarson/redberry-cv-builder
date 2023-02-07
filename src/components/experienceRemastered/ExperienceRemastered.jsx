@@ -10,13 +10,41 @@ const ExperienceRemastered = () => {
   const [startingDate, setStartingDate] = useState("");
   const [endingDate, setEndingDate] = useState("");
   const [description, setDescription] = useState("");
-
   const [forms, setForms] = useState([]);
+  const [inputs, setInputs] = useState([
+    {
+      position: "",
+      employer: "",
+      startingDate: "",
+      endingDate: "",
+      description: "",
+    },
+  ]);
+
+  const [renderCount, setRenderCount] = useState(0);
 
   const handleAddExperience = () => {
-    setForms([...forms, "counter"]);
+    // setForms([...forms, "counter"]);
+    setInputs([
+      ...inputs,
+      {
+        position: "",
+        employer: "",
+        startingDate: "",
+        endingDate: "",
+        description: "",
+      },
+    ]);
   };
-  // console.log(forms);
+  const handleNextButton = () => {
+    // if validated
+    const experienceData = JSON.stringify(inputs);
+    // Store the data in localStorage
+    localStorage.setItem("formData", experienceData);
+
+    // navigate to the education page !!
+  };
+
   return (
     <div>
       <div className='layout-flex-container-remastered'>
@@ -29,7 +57,7 @@ const ExperienceRemastered = () => {
 
           <div className='bottom-line-for-header-remastered'></div>
 
-          <ExperienceForm
+          {/* <ExperienceForm
             position={position}
             setPosition={setPosition}
             employer={employer}
@@ -40,12 +68,15 @@ const ExperienceRemastered = () => {
             setEndingDate={setEndingDate}
             description={description}
             setDescription={setDescription}
-          />
+          /> */}
 
-          {forms.map((form, index) => {
+          {inputs.map((form, index) => {
             return (
               <ExperienceForm
                 key={index}
+                index={index}
+                inputs={inputs}
+                setInputs={setInputs}
                 position={position}
                 setPosition={setPosition}
                 employer={employer}
@@ -66,16 +97,24 @@ const ExperienceRemastered = () => {
             მეტი გამოცდილების დამატება
           </button>
           <button className='go-back-button-remastered'>უკან</button>
-          <button className='go-next-button-remastered'>შემდეგი</button>
+          <button
+            className='go-next-button-remastered'
+            onClick={handleNextButton}
+          >
+            შემდეგი
+          </button>
         </div>
         <div className='outputs-all'>
           <ExperienceFormOutput
+            renderCount={renderCount}
+            setRenderCount={setRenderCount}
+            inputs={inputs}
             forms={forms}
-            position={position}
-            employer={employer}
-            startingDate={startingDate}
-            endingDate={endingDate}
-            description={description}
+            position={inputs?.position}
+            employer={inputs?.employer}
+            startingDate={inputs?.startingDate}
+            endingDate={inputs?.endingDate}
+            description={inputs?.description}
           />
           {/* {forms.map((outForm, index) => {
             return (

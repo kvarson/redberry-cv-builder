@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
+
 import "./experienceForm.css";
 import ExperienceFormOutput from "../experienceFormOutput/ExperienceFormOutput";
 const ExperienceForm = ({
@@ -15,31 +16,44 @@ const ExperienceForm = ({
   endingDate,
   description,
   setDescription,
+  index,
+  inputs,
+  setInputs,
 }) => {
-  const handlePositionChange = (e) => {
-    setPosition(e.target.value);
-  };
-  const handleStartingDateChange = (e) => {
-    setStartingDate(e.target.value);
+  // const handlePositionChange = (e) => {
+  //   setPosition(e.target.value);
+  // };
+  // const handleStartingDateChange = (e) => {
+  //   setStartingDate(e.target.value);
+  // };
+
+  // const handleEndingDateChange = (e) => {
+  //   setEndingDate(e.target.value);
+  // };
+  // const handleEmployerChange = (e) => {
+  //   setEmployer(e.target.value);
+  // };
+  // const handleDescriptionChange = (e) => {
+  //   setDescription(e.target.value);
+  // };
+  const handleInputChange = (event, index) => {
+    if (!inputs) return;
+    const name = event.target.name;
+    const values = [...inputs];
+    if (!values[index]) values[index] = {};
+    values[index][name] = event.target.value;
+    setInputs(values);
   };
 
-  const handleEndingDateChange = (e) => {
-    setEndingDate(e.target.value);
-  };
-  const handleEmployerChange = (e) => {
-    setEmployer(e.target.value);
-  };
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
   return (
     <div>
       <div>
         <div className='position-container-remastered'>
           <p className='position-text-remastered'>თანამდებობა</p>
           <input
-            onChange={(e) => handlePositionChange(e)}
-            value={position}
+            onChange={(e) => handleInputChange(e, index)}
+            value={inputs?.position}
+            name='position'
             className='position-input-remastered'
             placeholder='დეველოპერი, დიზაინერი, ა.შ'
             type='text'
@@ -52,8 +66,9 @@ const ExperienceForm = ({
         <div className='employer-container-remastered'>
           <p className='employer-text-remastered'>დამსაქმებელი</p>
           <input
-            value={employer}
-            onChange={(e) => handleEmployerChange(e)}
+            name='employer'
+            value={inputs?.employer}
+            onChange={(e) => handleInputChange(e, index)}
             placeholder='დამსაქმებელი'
             className='employer-input-remastered'
             type='text'
@@ -66,7 +81,8 @@ const ExperienceForm = ({
           <div className='starting-date-container-remastered'>
             <p className='starting-date-text-remastered'>დაწყების რიცხვი</p>
             <input
-              onChange={(e) => handleStartingDateChange(e)}
+              name='startingDate'
+              onChange={(e) => handleInputChange(e, index)}
               className='starting-date-input-remastered'
               type='date'
               placeholder='MM / DD / YYYY'
@@ -75,7 +91,8 @@ const ExperienceForm = ({
           <div className='ending-date-container-remastered'>
             <p className='ending-date-text-remastered'>დამთავრების რიცხვი</p>
             <input
-              onChange={(e) => handleEndingDateChange(e)}
+              name='endingDate'
+              onChange={(e) => handleInputChange(e, index)}
               className='ending-date-input-remastered'
               placeholder='MM / DD / YYYY'
               type='date'
@@ -85,7 +102,8 @@ const ExperienceForm = ({
         <div className='description-container-remastered'>
           <p className='description-text-remastered'>აღწერა</p>
           <textarea
-            onChange={(e) => handleDescriptionChange(e)}
+            name='description'
+            onChange={(e) => handleInputChange(e, index)}
             className='description-input-remastered'
             placeholder='როლი თანამდებობაზე და ზოგადი აღწერა'
             type='text'

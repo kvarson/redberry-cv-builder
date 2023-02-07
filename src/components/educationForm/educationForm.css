@@ -1,0 +1,141 @@
+.education-facility-container {
+  margin-left: 126px;
+  margin-top: 69px;
+  padding: 8px 24px;
+}
+.education-facility-text {
+  padding-top: 8px;
+  width: 798px;
+  height: 21px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  /* identical to box height, or 131% */
+
+  color: #000000;
+}
+.education-facility-input {
+  margin-top: 8px;
+  padding: 13px 16px;
+  box-sizing: border-box;
+
+  width: 798px;
+  height: 48px;
+
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+}
+.education-facility-min-req {
+  width: 798px;
+  height: 21px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: 8px;
+  color: #2e2e2e;
+}
+.education-degree-container {
+  margin-left: 126px;
+  padding: 8px 24px;
+}
+.education-degree-text {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+
+  color: #000000;
+}
+select {
+  box-sizing: border-box;
+  margin-top: 8px;
+
+  width: 371px;
+  height: 48px;
+  padding: 13px 16px;
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+}
+.options-container {
+  padding: 0px;
+  width: 370px;
+  height: 369px;
+  left: 150px;
+  top: 379px;
+  filter: drop-shadow(0px 16px 28px rgba(0, 0, 0, 0.24));
+  border-radius: 4px;
+}
+option {
+  padding: 10px 10px 10px 16px;
+  width: 370px;
+  width: 370px;
+  height: 41px;
+
+  background: #ffffff;
+}
+.education-ending-date-container {
+  /* margin-top: 52px; */
+  padding: 8px 24px;
+}
+.education-ending-input {
+  margin-top: 8px;
+
+  box-sizing: border-box;
+  width: 371px;
+  height: 48px;
+  padding: 13px 16px;
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+}
+.education-degree-ending-date-container {
+  display: flex;
+  align-items: center;
+  margin-top: 23px;
+}
+.education-description-container {
+  margin-left: 126px;
+  padding: 8px 24px;
+  margin-top: 23px;
+}
+.education-description-text {
+  width: 798px;
+  height: 21px;
+
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  /* identical to box height, or 131% */
+
+  color: #000000;
+}
+.education-description-input {
+  margin-top: 8px;
+  padding: 13px 16px;
+  box-sizing: border-box;
+
+  width: 798px;
+  height: 179px;
+
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+}
+.education-bottom-line {
+  margin-top: 53px;
+  width: 798px;
+  height: 0px;
+  margin-left: 149px;
+  border: 1px solid #c1c1c1;
+}
