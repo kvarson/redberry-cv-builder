@@ -3,6 +3,7 @@ import "./experienceRemastered.css";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import ExperienceForm from "../experienceForm/ExperienceForm";
 import ExperienceFormOutput from "../experienceFormOutput/ExperienceFormOutput";
+import { useNavigate } from "react-router";
 
 const ExperienceRemastered = () => {
   const [position, setPosition] = useState("");
@@ -36,6 +37,7 @@ const ExperienceRemastered = () => {
       },
     ]);
   };
+  const navigate = useNavigate();
   const handleNextButton = () => {
     // if validated
     const experienceData = JSON.stringify(inputs);
@@ -43,6 +45,7 @@ const ExperienceRemastered = () => {
     localStorage.setItem("formData", experienceData);
 
     // navigate to the education page !!
+    navigate("/education");
   };
 
   return (

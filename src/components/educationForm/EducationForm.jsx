@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./educationForm.css";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
@@ -12,6 +12,15 @@ const EducationForm = ({ educationInputs, setEducationInputs, index }) => {
     values[index][name] = event.target.value;
     setEducationInputs(values);
   };
+  console.log(educationInputs);
+  const [degree, setDegree] = useState([]);
+
+  useEffect(() => {
+    // Fetch the options data from the API or other source
+    fetch("https://resume.redberryinternship.ge/api/degrees")
+      .then((response) => response.json())
+      .then((data) => setDegree(data));
+  }, []);
   return (
     <div>
       <div className='form-wrapper'>
@@ -36,40 +45,31 @@ const EducationForm = ({ educationInputs, setEducationInputs, index }) => {
           <div className='education-degree-container'>
             <p className='education-degree-text'>ხარისხი</p>
             <select
+              onChange={(e) => handleEducationInputChange(e, index)}
               name='degree'
               value={educationInputs?.degree}
               className='education-degree-select'
             >
               <option
-                className='education-degree-option'
+                className='option-to-disapear'
                 value=''
                 disabled
+                label='აირჩიეთ ხარისხი'
                 selected
-                hidden
-              >
-                აირჩიეთ ხარისხი
-              </option>
-              <option style={{ width: "370px" }} value=''>
-                blabla
-              </option>
-              <option style={{ width: "370px" }} value=''>
-                blabla
-              </option>
-              <option style={{ width: "370px" }} value=''>
-                blabla
-              </option>
-              <option style={{ width: "370px" }} value=''>
-                blabla
-              </option>
-              <option style={{ width: "370px" }} value=''>
-                blabla
-              </option>
+              />
+
+              {degree.map((option) => (
+                <option key={option.id} value={option.title}>
+                  {option.title}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className='education-ending-date-container'>
             <p className='education-ending-date-text'>დამთავრების რიცხვი</p>
             <input
+              onChange={(e) => handleEducationInputChange(e, index)}
               type='date'
               value={educationInputs?.studyEnding}
               name='studyEnding'
@@ -81,6 +81,7 @@ const EducationForm = ({ educationInputs, setEducationInputs, index }) => {
         <div className='education-description-container'>
           <p className='education-description-text'>აღწერა</p>
           <textarea
+            onChange={(e) => handleEducationInputChange(e, index)}
             name='studyDescription'
             value={educationInputs?.studyDescription}
             className='education-description-input'

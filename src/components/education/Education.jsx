@@ -3,6 +3,7 @@ import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import "./education.css";
 import EducationForm from "../educationForm/EducationForm";
 import EducationOutput from "../educationOutput/EducationOutput";
+import { useNavigate } from "react-router";
 const Education = () => {
   const [educationInputs, setEducationInputs] = useState([
     { facility: "", degree: "", studyEnding: "", studyDescription: "" },
@@ -18,6 +19,16 @@ const Education = () => {
         studyDescription: "",
       },
     ]);
+  };
+  const navigate = useNavigate();
+  const handleEndButton = () => {
+    // if validated
+    const educationData = JSON.stringify(educationInputs);
+    // Store the data in localStorage
+    localStorage.setItem("formEducationData", educationData);
+
+    // navigate to the resumeFinished page !!
+    navigate("/resume");
   };
 
   return (
@@ -45,12 +56,14 @@ const Education = () => {
           </button>
           <div className='button-container'>
             <button className='go-back-btn'>უკან</button>
-            <button className='end-btn'>დასრულება</button>
+            <button className='end-btn' onClick={handleEndButton}>
+              დასრულება
+            </button>
           </div>
         </div>
 
         <div className='education-output-container'>
-          <EducationOutput />
+          <EducationOutput educationInputs={educationInputs} />
         </div>
       </div>
     </div>

@@ -687,3 +687,6 @@
 .hidden-input {
   visibility: hidden;
 }
+.about-me-output {
+  overflow-wrap: break-word;
+}

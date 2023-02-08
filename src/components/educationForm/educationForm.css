@@ -139,3 +139,7 @@ option {
   margin-left: 149px;
   border: 1px solid #c1c1c1;
 }
+
+select:focus .option-to-disapear {
+  display: none;
+}

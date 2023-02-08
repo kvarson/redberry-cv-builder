@@ -4,7 +4,8 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import MappedForms from "../MappedForms/MappedForms";
 import MappedFormsForEducation from "../mappedFormsForEducation/MappedFormsForEducation";
-const EducationOutput = () => {
+import EducationFormOutput from "../educationFormOutput/EducationFormOutput";
+const EducationOutput = ({ educationInputs }) => {
   const name = localStorage.getItem("name");
   const surname = localStorage.getItem("surname");
   const aboutMe = localStorage.getItem("aboutMe");
@@ -90,6 +91,16 @@ const EducationOutput = () => {
           );
         })}
 
+        {/* HERE GOES THE OUTPUT FROM THE EDUCATION FORMS */}
+        {educationInputs.map((educationInput, index) => {
+          return (
+            <EducationFormOutput
+              key={index}
+              index={index}
+              educationInputs={educationInputs}
+            />
+          );
+        })}
         {/* <div className='bottom-line-after-about-me-remastered'></div> */}
       </div>
     </div>

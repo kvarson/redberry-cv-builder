@@ -160,3 +160,11 @@
   width: 662px;
   margin-top: 20px;
 }
+.image-uploaded-remastered {
+  right: 75px;
+  top: 48px;
+  position: absolute;
+  width: 246px;
+  height: 246px;
+  border-radius: 50%;
+}

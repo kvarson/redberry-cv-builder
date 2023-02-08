@@ -5,6 +5,7 @@ import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import PhoneIcon from "@mui/icons-material/Phone";
+import { useNavigate } from "react-router";
 
 const Personal = () => {
   const [name, setName] = useState("");
@@ -75,6 +76,8 @@ const Personal = () => {
     setUploadedImage(URL.createObjectURL(e.target.files[0]));
     console.log(URL.createObjectURL(e.target.files[0]));
   };
+  const navigate = useNavigate();
+
   const handleNextButtonClick = () => {
     // if validated
 
@@ -85,6 +88,8 @@ const Personal = () => {
     localStorage.setItem("number", number);
     localStorage.setItem("uploadedImage", uploadedImage);
     // navigate to the experience page
+
+    navigate("/experience");
   };
 
   const fileUploadHandler = () => {};
