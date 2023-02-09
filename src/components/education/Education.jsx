@@ -6,17 +6,17 @@ import EducationOutput from "../educationOutput/EducationOutput";
 import { useNavigate } from "react-router";
 const Education = () => {
   const [educationInputs, setEducationInputs] = useState([
-    { facility: "", degree: "", studyEnding: "", studyDescription: "" },
+    { institute: "", degree_id: "", due_date: "", description: "" },
   ]);
   console.log(educationInputs);
   const addEducation = () => {
     setEducationInputs([
       ...educationInputs,
       {
-        facility: "",
-        degree: "",
-        studyEnding: "",
-        studyDescription: "",
+        institute: "",
+        degree_id: "",
+        due_date: "",
+        description: "",
       },
     ]);
   };

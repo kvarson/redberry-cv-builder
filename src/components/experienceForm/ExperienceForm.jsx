@@ -81,7 +81,7 @@ const ExperienceForm = ({
           <div className='starting-date-container-remastered'>
             <p className='starting-date-text-remastered'>დაწყების რიცხვი</p>
             <input
-              name='startingDate'
+              name='start_date'
               onChange={(e) => handleInputChange(e, index)}
               className='starting-date-input-remastered'
               type='date'
@@ -91,7 +91,7 @@ const ExperienceForm = ({
           <div className='ending-date-container-remastered'>
             <p className='ending-date-text-remastered'>დამთავრების რიცხვი</p>
             <input
-              name='endingDate'
+              name='due_date'
               onChange={(e) => handleInputChange(e, index)}
               className='ending-date-input-remastered'
               placeholder='MM / DD / YYYY'

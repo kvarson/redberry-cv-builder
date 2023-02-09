@@ -19,6 +19,7 @@ const Personal = () => {
   const [emailValid, setEmailValid] = useState(false);
   const [numberValid, setNumberValid] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [validatedImage, setValidatedImage] = useState("");
 
   const formatedNumber =
     number.slice(0, 4) +

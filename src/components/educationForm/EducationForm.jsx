@@ -30,10 +30,10 @@ const EducationForm = ({ educationInputs, setEducationInputs, index }) => {
           <p className='education-facility-text'>სასწავლებელი</p>
           <input
             type='text'
-            name='facility'
+            name='institute'
             className='education-facility-input'
             placeholder='სასწავლებელი'
-            value={educationInputs?.facility}
+            value={educationInputs?.institute}
             onChange={(e) => handleEducationInputChange(e, index)}
           />
           <CheckCircleIcon className='position-check-circle-remastered' />
@@ -46,8 +46,8 @@ const EducationForm = ({ educationInputs, setEducationInputs, index }) => {
             <p className='education-degree-text'>ხარისხი</p>
             <select
               onChange={(e) => handleEducationInputChange(e, index)}
-              name='degree'
-              value={educationInputs?.degree}
+              name='degree_id'
+              value={educationInputs?.degree_id}
               className='education-degree-select'
             >
               <option
@@ -59,7 +59,7 @@ const EducationForm = ({ educationInputs, setEducationInputs, index }) => {
               />
 
               {degree.map((option) => (
-                <option key={option.id} value={option.title}>
+                <option key={option.id} value={option.id}>
                   {option.title}
                 </option>
               ))}
@@ -71,8 +71,8 @@ const EducationForm = ({ educationInputs, setEducationInputs, index }) => {
             <input
               onChange={(e) => handleEducationInputChange(e, index)}
               type='date'
-              value={educationInputs?.studyEnding}
-              name='studyEnding'
+              value={educationInputs?.due_date}
+              name='due_date'
               className='education-ending-input'
             />
           </div>
@@ -82,8 +82,8 @@ const EducationForm = ({ educationInputs, setEducationInputs, index }) => {
           <p className='education-description-text'>აღწერა</p>
           <textarea
             onChange={(e) => handleEducationInputChange(e, index)}
-            name='studyDescription'
-            value={educationInputs?.studyDescription}
+            name='description'
+            value={educationInputs?.description}
             className='education-description-input'
             placeholder='განათლების აღწერა'
           />

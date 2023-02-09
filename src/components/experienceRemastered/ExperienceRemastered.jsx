@@ -16,8 +16,8 @@ const ExperienceRemastered = () => {
     {
       position: "",
       employer: "",
-      startingDate: "",
-      endingDate: "",
+      start_date: "",
+      due_date: "",
       description: "",
     },
   ]);
@@ -31,8 +31,8 @@ const ExperienceRemastered = () => {
       {
         position: "",
         employer: "",
-        startingDate: "",
-        endingDate: "",
+        start_date: "",
+        due_date: "",
         description: "",
       },
     ]);
@@ -109,14 +109,12 @@ const ExperienceRemastered = () => {
         </div>
         <div className='outputs-all'>
           <ExperienceFormOutput
-            renderCount={renderCount}
-            setRenderCount={setRenderCount}
             inputs={inputs}
             forms={forms}
             position={inputs?.position}
             employer={inputs?.employer}
-            startingDate={inputs?.startingDate}
-            endingDate={inputs?.endingDate}
+            startingDate={inputs?.start_date}
+            endingDate={inputs?.due_date}
             description={inputs?.description}
           />
           {/* {forms.map((outForm, index) => {

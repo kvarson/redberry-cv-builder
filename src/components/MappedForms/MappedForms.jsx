@@ -4,7 +4,7 @@ const MappedForms = ({
   position,
   employer,
   startingDate,
-  endingDate,
+  due_date,
   description,
   forms,
   index,
@@ -23,9 +23,9 @@ const MappedForms = ({
       </div>
 
       <div className='experience-starting-ending-output-form-remastered'>
-        {inputs[index]?.startingDate.replaceAll("-", "/")}{" "}
-        {inputs[index]?.startingDate ? "-" : ""}{" "}
-        {inputs[index]?.endingDate.replaceAll("-", "/")}
+        {inputs[index]?.start_date.replaceAll("-", "/")}{" "}
+        {inputs[index]?.start_date ? "-" : ""}{" "}
+        {inputs[index]?.due_date.replaceAll("-", "/")}
       </div>
 
       <div className='description-output-form-remastered'>

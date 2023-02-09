@@ -1,6 +1,7 @@
 import React from "react";
 import "../experienceFormOutput/experienceFormOutput.css";
 const MappedFormsForEducation = ({ index, experienceData }) => {
+  console.log(experienceData);
   return (
     <div>
       <div className='experience-output-container-form-remastered'>
@@ -16,9 +17,9 @@ const MappedFormsForEducation = ({ index, experienceData }) => {
       </div>
 
       <div className='experience-starting-ending-output-form-remastered'>
-        {experienceData[index]?.startingDate.replaceAll("-", "/")}{" "}
-        {experienceData[index]?.startingDate ? "-" : ""}{" "}
-        {experienceData[index]?.endingDate.replaceAll("-", "/")}
+        {experienceData[index]?.start_date.replaceAll("-", "/")}{" "}
+        {experienceData[index]?.start_date ? "-" : ""}{" "}
+        {experienceData[index]?.due_date.replaceAll("-", "/")}
       </div>
 
       <div className='description-output-form-remastered'>

@@ -11,8 +11,6 @@ const ExperienceFormOutput = ({
   description,
   forms,
   inputs,
-  renderCount,
-  setRenderCount,
 }) => {
   const name = localStorage.getItem("name");
   const surname = localStorage.getItem("surname");
@@ -21,10 +19,6 @@ const ExperienceFormOutput = ({
   const email = localStorage.getItem("email");
   const uploadedImage = localStorage.getItem("uploadedImage");
 
-  useEffect(() => {
-    setRenderCount(renderCount + 1);
-    console.log(renderCount);
-  }, []);
   //   setRenderCount(renderCount + 1);
   // }
   // console.log(renderCount);
@@ -106,7 +100,7 @@ const ExperienceFormOutput = ({
                 forms={forms}
                 position={position}
                 employer={employer}
-                startingDate={startingDate}
+                start_date={startingDate}
                 endingDate={endingDate}
                 description={description}
               />

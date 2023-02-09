@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PhoneIcon from "@mui/icons-material/Phone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
@@ -19,8 +19,21 @@ const ResumeFinished = () => {
 
   const educationInputs = localStorage.getItem("formEducationData");
   const educationData = educationInputs ? JSON.parse(educationInputs) : [];
+  const [validatedImage, setValidatedImage] = useState("");
 
-  console.log([...educationData]);
+  const uploadedImageString = JSON.stringify(uploadedImage);
+  useEffect(() => {
+    // fetch(uploadedImage)
+    //   .then((response) => response.blob())
+    //   .then((blob) => {
+    //     const file = new File([blob], "File name", { type: "image/png" });
+    //     setValidatedImage(file);
+    //   });
+    fetch(uploadedImageString)
+      .then((response) => response.blob())
+      .then((blob) => setValidatedImage(blob));
+  }, [uploadedImage]);
+  console.log(validatedImage);
 
   const newCvToSend = {
     name: name,
@@ -29,7 +42,7 @@ const ResumeFinished = () => {
     phone_number: number,
     experiences: [...experienceData],
     educations: [...educationData],
-    image: uploadedImage,
+    image: validatedImage,
     about_me: aboutMe,
   };
   console.log(JSON.stringify(newCvToSend));
@@ -37,15 +50,18 @@ const ResumeFinished = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = fetch("https://resume.redberryinternship.ge/api/cvs", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newCvToSend),
-        });
-        const data = response.json();
+        const response = await fetch(
+          "https://resume.redberryinternship.ge/api/cvs",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: newCvToSend,
+          }
+        );
+        console.log(response);
+        const data = await response.json();
         console.log(data);
       } catch (err) {
         console.log(err);
@@ -82,7 +98,11 @@ const ResumeFinished = () => {
             </div>
           </div>
           <div className='resume-image-container'>
-            <img className="resume-finished-image" src={uploadedImage} alt='Person' />
+            <img
+              className='resume-finished-image'
+              src={uploadedImage}
+              alt='Person'
+            />
           </div>
           <div className='resume-about-me-container'>
             <p className='resume-about-me-text'>ჩემს შესახებ</p>
