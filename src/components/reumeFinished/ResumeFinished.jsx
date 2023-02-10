@@ -6,6 +6,7 @@ import "./resumeFinished.css";
 import MappedFormsForEducation from "../mappedFormsForEducation/MappedFormsForEducation";
 import EducationFormOutput from "../educationFormOutput/EducationFormOutput";
 import EducationFormOutputForResume from "../educationFormOutputForResume/EducationFormOutputForResume";
+import axios from "axios";
 const ResumeFinished = () => {
   const name = localStorage.getItem("name");
   const surname = localStorage.getItem("surname");
@@ -20,21 +21,51 @@ const ResumeFinished = () => {
   const educationInputs = localStorage.getItem("formEducationData");
   const educationData = educationInputs ? JSON.parse(educationInputs) : [];
   const [validatedImage, setValidatedImage] = useState("");
+  const fileSaved = localStorage.getItem("fileSaved");
 
   const uploadedImageString = JSON.stringify(uploadedImage);
   useEffect(() => {
-    // fetch(uploadedImage)
-    //   .then((response) => response.blob())
-    //   .then((blob) => {
-    //     const file = new File([blob], "File name", { type: "image/png" });
-    //     setValidatedImage(file);
-    //   });
-    fetch(uploadedImageString)
+    fetch(fileSaved)
       .then((response) => response.blob())
-      .then((blob) => setValidatedImage(blob));
-  }, [uploadedImage]);
+      .then((blob) => {
+        const file = new File([blob], "File name", { type: "image/png" });
+        setValidatedImage(file);
+      });
+  }, [fileSaved]);
   console.log(validatedImage);
+  const turnToBlobObject = () => {
+    // fetch(uploadedImageString)
+    //   .then((res) => res.blob())
+    //   .then((blob) => {
+    //     // const newFile = new File([blob], "File Name", { type: "image/png" });
+    //     // setValidatedImage(newFile);
+    //     const oldBlob = blob;
+    //     const newBlob = new Blob([oldBlob], { type: "image/png" });
+    //     newCvToSend.image = newBlob;
+    //     // newCvToSend.image = newFile;
+    //     postData(newCvToSend);
+    // });
+  };
 
+  const postData = (data) => {
+    axios({
+      method: "post",
+      url: "https://resume.redberryinternship.ge/api/cvs",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+      },
+      data: data,
+    })
+      .then(function (response) {
+        console.log(newCvToSend);
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error.response.data);
+      });
+  };
+  console.log(validatedImage);
   const newCvToSend = {
     name: name,
     surname: surname,
@@ -45,30 +76,27 @@ const ResumeFinished = () => {
     image: validatedImage,
     about_me: aboutMe,
   };
-  console.log(JSON.stringify(newCvToSend));
 
+  const POSTURL = "https://resume.redberryinternship.ge/api/cvs";
+  console.log(newCvToSend);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://resume.redberryinternship.ge/api/cvs",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: newCvToSend,
-          }
-        );
-        console.log(response);
-        const data = await response.json();
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
+    // turnToBlobObject();
+    postData(newCvToSend);
   }, []);
+  // axios({
+  //   method: "post",
+  //   url: "https://resume.redberryinternship.ge/api/cvs",
+  //   headers: {
+  //     Accept: "application/json",
+  //   },
+  //   data: newCvToSend,
+  // })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error.response.data);
+  //   });
   const formatedNumber =
     number.slice(0, 4) +
     " " +

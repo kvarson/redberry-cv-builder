@@ -20,6 +20,7 @@ const Personal = () => {
   const [numberValid, setNumberValid] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [validatedImage, setValidatedImage] = useState("");
+  const [fileSaved, setFileSaved] = useState("");
 
   const formatedNumber =
     number.slice(0, 4) +
@@ -76,6 +77,7 @@ const Personal = () => {
     console.log(e.target.files[0]);
     setUploadedImage(URL.createObjectURL(e.target.files[0]));
     console.log(URL.createObjectURL(e.target.files[0]));
+    setFileSaved(e.target.files[0]);
   };
   const navigate = useNavigate();
 
@@ -88,6 +90,8 @@ const Personal = () => {
     localStorage.setItem("email", email);
     localStorage.setItem("number", number);
     localStorage.setItem("uploadedImage", uploadedImage);
+    localStorage.setItem("fileSaved", fileSaved);
+
     // navigate to the experience page
 
     navigate("/experience");
