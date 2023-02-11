@@ -690,3 +690,6 @@
 .about-me-output {
   overflow-wrap: break-word;
 }
+.default-class-name {
+  border-color: gray;
+}

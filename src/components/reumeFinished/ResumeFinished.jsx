@@ -23,14 +23,43 @@ const ResumeFinished = () => {
   const [validatedImage, setValidatedImage] = useState("");
   const fileSaved = localStorage.getItem("fileSaved");
 
-  const uploadedImageString = JSON.stringify(uploadedImage);
+  const uploadedImageString = JSON.stringify(uploadedImage.slice(5, -1));
+
+  console.log(uploadedImageString);
+
+  console.log(uploadedImageString);
   useEffect(() => {
-    fetch(fileSaved)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const file = new File([blob], "File name", { type: "image/png" });
-        setValidatedImage(file);
-      });
+    // fetch(uploadedImageString)
+    //   .then((response) => response.blob())
+    //   .then((blob) => {
+    //     const file = new File([blob], "File name", { type: "image/png" });
+    //     setValidatedImage(file);
+    // });
+    //   fetch(fileSaved)
+    //     .then((response) => response.blob())
+    //     .then((blob) => {
+    //       const file = new File([blob], "File name", { type: "image/png" });
+    //       setValidatedImage(file);
+
+    //     });
+
+    // Retrieving the file from localStorage
+    const dataUrl = localStorage.getItem("myFile");
+    const blob = dataUrlToBlob(dataUrl);
+    const file = new File([blob], "myFileName", { type: "image/png" });
+    setValidatedImage(file);
+
+    function dataUrlToBlob(dataUrl) {
+      const parts = dataUrl.split(";base64,");
+      const contentType = parts[0].split(":")[1];
+      const byteCharacters = atob(parts[1]);
+      const byteArrays = [];
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteArrays.push(byteCharacters.charCodeAt(i));
+      }
+      const byteArray = new Uint8Array(byteArrays);
+      return new Blob([byteArray], { type: contentType });
+    }
   }, [fileSaved]);
   console.log(validatedImage);
   const turnToBlobObject = () => {
@@ -82,7 +111,7 @@ const ResumeFinished = () => {
   useEffect(() => {
     // turnToBlobObject();
     postData(newCvToSend);
-  }, []);
+  }, [newCvToSend]);
   // axios({
   //   method: "post",
   //   url: "https://resume.redberryinternship.ge/api/cvs",

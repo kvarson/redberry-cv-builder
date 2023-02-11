@@ -40,8 +40,6 @@ const Personal = () => {
     }
   };
 
-  const validateName = (name) => {};
-
   const handleSurnameChange = (e) => {
     const geoRegex = /^[ა-ჰ]+$/g;
     setSurname(e.target.value);
@@ -74,10 +72,18 @@ const Personal = () => {
     setAboutMe(e.target.value);
   };
   const fileSelectedHandler = (e) => {
+    console.log(e.target.files[0], "E FILES");
     console.log(e.target.files[0]);
     setUploadedImage(URL.createObjectURL(e.target.files[0]));
     console.log(URL.createObjectURL(e.target.files[0]));
     setFileSaved(e.target.files[0]);
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function () {
+      const dataUrl = reader.result;
+      localStorage.setItem("myFile", dataUrl);
+    };
+    reader.readAsDataURL(file);
   };
   const navigate = useNavigate();
 
