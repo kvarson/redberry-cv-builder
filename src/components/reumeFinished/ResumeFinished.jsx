@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PhoneIcon from "@mui/icons-material/Phone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
@@ -6,6 +6,7 @@ import "./resumeFinished.css";
 import MappedFormsForEducation from "../mappedFormsForEducation/MappedFormsForEducation";
 import EducationFormOutput from "../educationFormOutput/EducationFormOutput";
 import EducationFormOutputForResume from "../educationFormOutputForResume/EducationFormOutputForResume";
+
 import axios from "axios";
 const ResumeFinished = () => {
   const name = localStorage.getItem("name");
@@ -22,27 +23,10 @@ const ResumeFinished = () => {
   const educationData = educationInputs ? JSON.parse(educationInputs) : [];
   const [validatedImage, setValidatedImage] = useState("");
   const fileSaved = localStorage.getItem("fileSaved");
-
+  const [responseData, setResponseData] = useState(null);
   const uploadedImageString = JSON.stringify(uploadedImage.slice(5, -1));
 
-  console.log(uploadedImageString);
-
-  console.log(uploadedImageString);
   useEffect(() => {
-    // fetch(uploadedImageString)
-    //   .then((response) => response.blob())
-    //   .then((blob) => {
-    //     const file = new File([blob], "File name", { type: "image/png" });
-    //     setValidatedImage(file);
-    // });
-    //   fetch(fileSaved)
-    //     .then((response) => response.blob())
-    //     .then((blob) => {
-    //       const file = new File([blob], "File name", { type: "image/png" });
-    //       setValidatedImage(file);
-
-    //     });
-
     // Retrieving the file from localStorage
     const dataUrl = localStorage.getItem("myFile");
     const blob = dataUrlToBlob(dataUrl);
@@ -60,21 +44,7 @@ const ResumeFinished = () => {
       const byteArray = new Uint8Array(byteArrays);
       return new Blob([byteArray], { type: contentType });
     }
-  }, [fileSaved]);
-  console.log(validatedImage);
-  const turnToBlobObject = () => {
-    // fetch(uploadedImageString)
-    //   .then((res) => res.blob())
-    //   .then((blob) => {
-    //     // const newFile = new File([blob], "File Name", { type: "image/png" });
-    //     // setValidatedImage(newFile);
-    //     const oldBlob = blob;
-    //     const newBlob = new Blob([oldBlob], { type: "image/png" });
-    //     newCvToSend.image = newBlob;
-    //     // newCvToSend.image = newFile;
-    //     postData(newCvToSend);
-    // });
-  };
+  }, []);
 
   const postData = (data) => {
     axios({
@@ -87,14 +57,15 @@ const ResumeFinished = () => {
       data: data,
     })
       .then(function (response) {
-        console.log(newCvToSend);
-        console.log(response);
+        // console.log(response.data);
+        // setResponseData(response);
+
+        setResponseData(response.data);
       })
       .catch(function (error) {
         console.log(error.response.data);
       });
   };
-  console.log(validatedImage);
   const newCvToSend = {
     name: name,
     surname: surname,
@@ -106,26 +77,11 @@ const ResumeFinished = () => {
     about_me: aboutMe,
   };
 
-  const POSTURL = "https://resume.redberryinternship.ge/api/cvs";
-  console.log(newCvToSend);
   useEffect(() => {
-    // turnToBlobObject();
     postData(newCvToSend);
-  }, [newCvToSend]);
-  // axios({
-  //   method: "post",
-  //   url: "https://resume.redberryinternship.ge/api/cvs",
-  //   headers: {
-  //     Accept: "application/json",
-  //   },
-  //   data: newCvToSend,
-  // })
-  //   .then(function (response) {
-  //     console.log(response);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error.response.data);
-  //   });
+  }, [validatedImage]);
+
+  console.log(responseData);
   const formatedNumber =
     number.slice(0, 4) +
     " " +
@@ -135,64 +91,74 @@ const ResumeFinished = () => {
     " " +
     number.slice(10, 13);
 
-  // console.log(forms);
-
   return (
-    <div>
-      <div className='resume-container'>
-        <div className='personal-info-container-for-resume'>
-          <div className='resume-personal-container'>
-            <p className='resume-name-surname'>
-              {name} {surname}
-            </p>
-            <div className='resume-email'>
-              <AlternateEmailIcon className='resume-email-icon' />
-              <p className='resume-email-text'>{email}</p>
+    responseData && (
+      <div>
+        <div className='resume-container'>
+          <div className='personal-info-container-for-resume'>
+            <div className='resume-personal-container'>
+              <p className='resume-name-surname'>
+                {responseData.name} {responseData.surname}
+              </p>
+              <div className='resume-email'>
+                <AlternateEmailIcon className='resume-email-icon' />
+                <p className='resume-email-text'>{responseData.email}</p>
+              </div>
+              <div className='resume-phone'>
+                <PhoneIcon className='resume-phone-icon' />
+                <p className='resume-phone-text'>
+                  {responseData.phone_number.slice(0, 4) +
+                    " " +
+                    responseData.phone_number.slice(4, 7) +
+                    " " +
+                    responseData.phone_number.slice(7, 10) +
+                    " " +
+                    responseData.phone_number.slice(10, 13)}
+                </p>
+              </div>
             </div>
-            <div className='resume-phone'>
-              <PhoneIcon className='resume-phone-icon' />
-              <p className='resume-phone-text'>{formatedNumber}</p>
+            <div className='resume-image-container'>
+              <img
+                className='resume-finished-image'
+                src={`https://resume.redberryinternship.ge${responseData.image}`}
+                alt='Person'
+              />
+            </div>
+            <div className='resume-about-me-container'>
+              <p className='resume-about-me-text'>ჩემს შესახებ</p>
+
+              <div className='resume-about-me-value'>
+                {responseData.about_me}
+              </div>
+              <div className='resume-personal-botton-line'></div>
             </div>
           </div>
-          <div className='resume-image-container'>
-            <img
-              className='resume-finished-image'
-              src={uploadedImage}
-              alt='Person'
-            />
-          </div>
-          <div className='resume-about-me-container'>
-            <p className='resume-about-me-text'>ჩემს შესახებ</p>
 
-            <div className='resume-about-me-value'>{aboutMe}</div>
-            <div className='resume-personal-botton-line'></div>
+          <div className='resume-experience-container'>
+            {experienceData.map((exp, index) => {
+              return (
+                <MappedFormsForEducation
+                  experienceData={responseData.experiences}
+                  key={index}
+                  index={index}
+                />
+              );
+            })}
           </div>
-        </div>
-
-        <div className='resume-experience-container'>
-          {experienceData.map((exp, index) => {
-            return (
-              <MappedFormsForEducation
-                experienceData={experienceData}
-                key={index}
-                index={index}
-              />
-            );
-          })}
-        </div>
-        <div className='resume-education-container'>
-          {educationData.map((educationdt, index) => {
-            return (
-              <EducationFormOutputForResume
-                educationData={educationData}
-                key={index}
-                index={index}
-              />
-            );
-          })}
+          <div className='resume-education-container'>
+            {educationData.map((educationdt, index) => {
+              return (
+                <EducationFormOutputForResume
+                  educationData={responseData.educations}
+                  key={index}
+                  index={index}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
 };
 
