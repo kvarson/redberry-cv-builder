@@ -168,3 +168,8 @@
   height: 246px;
   border-radius: 50%;
 }
+.little-logo {
+  position: absolute;
+  bottom: 44px;
+  right: 702px;
+}

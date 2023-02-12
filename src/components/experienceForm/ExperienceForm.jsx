@@ -19,31 +19,62 @@ const ExperienceForm = ({
   index,
   inputs,
   setInputs,
+  validationDescription,
+  validationDueDate,
+  validationEmployer,
+  validationPosition,
+  validationStartDate,
+  setValidationDescription,
+  setValidationDueDate,
+  setValidationEmployer,
+  setValidationPosition,
+  setValidationStartDate,
 }) => {
-  // const handlePositionChange = (e) => {
-  //   setPosition(e.target.value);
-  // };
-  // const handleStartingDateChange = (e) => {
-  //   setStartingDate(e.target.value);
-  // };
-
-  // const handleEndingDateChange = (e) => {
-  //   setEndingDate(e.target.value);
-  // };
-  // const handleEmployerChange = (e) => {
-  //   setEmployer(e.target.value);
-  // };
-  // const handleDescriptionChange = (e) => {
-  //   setDescription(e.target.value);
-  // };
   const handleInputChange = (event, index) => {
     if (!inputs) return;
     const name = event.target.name;
     const values = [...inputs];
     if (!values[index]) values[index] = {};
     values[index][name] = event.target.value;
+    localStorage.setItem("experienceInputs", JSON.stringify(values));
     setInputs(values);
+
+    // handleValidation();
+    handleValidation(name, index);
   };
+  const valuesForInputs = localStorage.getItem("educationInputs");
+  const valuesForInputsParsed = JSON.parse(valuesForInputs);
+  // console.log(inputs[index]?.position.length);
+
+  const handleValidation = (name, index) => {
+    switch (name) {
+      case "position":
+        setValidationPosition(inputs[index]?.position.length >= 2 ? 1 : -1);
+        break;
+      case "employer":
+        setValidationEmployer(inputs[index]?.employer.length >= 2 ? 1 : -1);
+        break;
+      case "start_date":
+        setValidationStartDate(inputs[index]?.start_date ? 1 : -1);
+        break;
+      case "due_date":
+        setValidationDueDate(inputs[index]?.due_date ? 1 : -1);
+        break;
+      case "description":
+        setValidationDescription(
+          inputs[index]?.description.length >= 1 ? 1 : -1
+        );
+        break;
+      default:
+        break;
+    }
+  };
+
+  // console.log(validationPosition, "validationPosition");
+  // console.log(validationEmployer, "validationEmployer");
+  // console.log(validationDescription, "validationDescription");
+  // console.log(validationStartDate, "validationStartDate");
+  // console.log(validationDueDate, "validationDueDate");
 
   return (
     <div>
@@ -52,14 +83,32 @@ const ExperienceForm = ({
           <p className='position-text-remastered'>თანამდებობა</p>
           <input
             onChange={(e) => handleInputChange(e, index)}
-            value={inputs?.position}
+            value={
+              inputs[index]?.position === ""
+                ? valuesForInputsParsed?.position
+                : inputs[index]?.position
+            }
             name='position'
-            className='position-input-remastered'
+            className={
+              (validationPosition === 1 &&
+                "position-input-remastered border-green") ||
+              (validationPosition === 0 && "position-input-remastered") ||
+              (validationPosition === -1 &&
+                "position-input-remastered border-red")
+            }
             placeholder='დეველოპერი, დიზაინერი, ა.შ'
             type='text'
           />
-          <CheckCircleIcon className='position-check-circle-remastered' />
-          <ReportProblemIcon className='position-error-icon-remastered' />
+          {validationPosition === 1 && (
+            <CheckCircleIcon
+              className={"position-check-circle-remastered show-success-icon"}
+            />
+          )}
+
+          {validationPosition === -1 && (
+            <ReportProblemIcon className='position-error-icon-remastered show-error-icon' />
+          )}
+
           <p className='position-min-req-remastered'>მინიმუმ 2 სიმბოლოსგან</p>
         </div>
 
@@ -67,14 +116,31 @@ const ExperienceForm = ({
           <p className='employer-text-remastered'>დამსაქმებელი</p>
           <input
             name='employer'
-            value={inputs?.employer}
+            value={
+              inputs[index]?.employer === ""
+                ? valuesForInputsParsed?.employer
+                : inputs[index]?.employer
+            }
             onChange={(e) => handleInputChange(e, index)}
             placeholder='დამსაქმებელი'
-            className='employer-input-remastered'
+            className={
+              (validationEmployer === 1 &&
+                "employer-input-remastered border-green") ||
+              (validationEmployer === -1 &&
+                "employer-input-remastered border-red") ||
+              (validationEmployer === 0 && "employer-input-remastered")
+            }
             type='text'
           />
-          <CheckCircleIcon className='position-check-circle-remastered' />
-          <ReportProblemIcon className='position-error-icon-remastered' />
+          {validationEmployer === 1 && (
+            <CheckCircleIcon
+              className={"position-check-circle-remastered show-success-icon"}
+            />
+          )}
+
+          {validationEmployer === -1 && (
+            <ReportProblemIcon className='position-error-icon-remastered show-error-icon' />
+          )}
           <p className='employer-min-req-remastered'>მინიმუმ 2 სიმბოლოსგან</p>
         </div>
         <div className='starting-ending-date-container-remastered'>
@@ -82,8 +148,19 @@ const ExperienceForm = ({
             <p className='starting-date-text-remastered'>დაწყების რიცხვი</p>
             <input
               name='start_date'
+              value={
+                inputs[index]?.start_date === ""
+                  ? valuesForInputsParsed?.start_date
+                  : inputs[index]?.start_date
+              }
               onChange={(e) => handleInputChange(e, index)}
-              className='starting-date-input-remastered'
+              className={
+                (validationStartDate === 1 &&
+                  "starting-date-input-remastered border-green") ||
+                (validationStartDate === -1 &&
+                  "starting-date-input-remastered border-red") ||
+                (validationStartDate === 0 && "starting-date-input-remastered")
+              }
               type='date'
               placeholder='MM / DD / YYYY'
             />
@@ -93,7 +170,19 @@ const ExperienceForm = ({
             <input
               name='due_date'
               onChange={(e) => handleInputChange(e, index)}
-              className='ending-date-input-remastered'
+              value={
+                inputs[index]?.due_date === ""
+                  ? valuesForInputsParsed?.due_date
+                  : inputs[index]?.due_date
+              }
+              // className='ending-date-input-remastered'
+              className={
+                (validationDueDate === 1 &&
+                  "ending-date-input-remastered border-green") ||
+                (validationDueDate === -1 &&
+                  "ending-date-input-remastered border-red") ||
+                (validationDueDate === 0 && "ending-date-input-remastered")
+              }
               placeholder='MM / DD / YYYY'
               type='date'
             />
@@ -104,7 +193,19 @@ const ExperienceForm = ({
           <textarea
             name='description'
             onChange={(e) => handleInputChange(e, index)}
-            className='description-input-remastered'
+            value={
+              inputs[index]?.description === ""
+                ? valuesForInputsParsed?.description
+                : inputs[index]?.description
+            }
+            // className='description-input-remastered'
+            className={
+              (validationDescription === 1 &&
+                "description-input-remastered border-green") ||
+              (validationDescription === -1 &&
+                "description-input-remastered border-red") ||
+              (validationDescription === 0 && "description-input-remastered")
+            }
             placeholder='როლი თანამდებობაზე და ზოგადი აღწერა'
             type='text'
           />

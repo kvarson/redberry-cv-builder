@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import "./education.css";
 import EducationForm from "../educationForm/EducationForm";
 import EducationOutput from "../educationOutput/EducationOutput";
 import { useNavigate } from "react-router";
 const Education = () => {
-  const [educationInputs, setEducationInputs] = useState([
-    { institute: "", degree_id: "", due_date: "", description: "" },
-  ]);
-  console.log(educationInputs);
+  const [educationInputs, setEducationInputs] = useState(() => {
+    const savedInputs = JSON.parse(localStorage.getItem("educationInputs"));
+    return (
+      savedInputs || [
+        { institute: "", degree_id: "", due_date: "", description: "" },
+      ]
+    );
+  });
+  // const [educationInputs, setEducationInputs] = useState([
+  //   { institute: "", degree_id: "", due_date: "", description: "" },
+  // ]);
+
+  const [validationInstitute, setValidationInstitute] = useState(0);
+  const [validationDegreeId, setValidationDegreeId] = useState(0);
+  const [validationDescription, setValidationDescription] = useState(0);
+  const [validationDueDate, setValidationDueDate] = useState(0);
   const addEducation = () => {
     setEducationInputs([
       ...educationInputs,
@@ -20,7 +32,13 @@ const Education = () => {
       },
     ]);
   };
+  const handleChevronLeft = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   const navigate = useNavigate();
+
   const handleEndButton = () => {
     // if validated
     const educationData = JSON.stringify(educationInputs);
@@ -28,9 +46,19 @@ const Education = () => {
     localStorage.setItem("formEducationData", educationData);
 
     // navigate to the resumeFinished page !!
-    navigate("/resume");
+    if (
+      validationDegreeId === 1 &&
+      validationDescription === 1 &&
+      validationDueDate === 1 &&
+      validationInstitute === 1
+    ) {
+      navigate("/resume");
+    }
   };
 
+  // useEffect(() => {
+  //   localStorage.setItem("valuesSaved", JSON.stringify(educationInputs));
+  // }, [educationInputs]);
   return (
     <div>
       <div className='education-flex'>
@@ -39,10 +67,21 @@ const Education = () => {
             <p className='education-header-text'>განათლება</p>
             <p className='education-header-page'>3/3</p>
           </div>
-          <ChevronLeftOutlinedIcon className='back-chevron-left-remastered' />
+          <ChevronLeftOutlinedIcon
+            onClick={handleChevronLeft}
+            className='back-chevron-left-remastered'
+          />
           {educationInputs.map((educ, index) => {
             return (
               <EducationForm
+                validationDegreeId={validationDegreeId}
+                setValidationDegreeId={setValidationDegreeId}
+                validationDescription={validationDescription}
+                setValidationDescription={setValidationDescription}
+                validationDueDate={validationDueDate}
+                setValidationDueDate={setValidationDueDate}
+                validationInstitute={validationInstitute}
+                setValidationInstitute={setValidationInstitute}
                 key={index}
                 index={index}
                 educationInputs={educationInputs}

@@ -3,6 +3,8 @@ import "./experienceFormOutput.css";
 import PhoneIcon from "@mui/icons-material/Phone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import MappedForms from "../MappedForms/MappedForms";
+import LittleLogo from "../../assets/bottom-logo.png";
+
 const ExperienceFormOutput = ({
   position,
   employer,
@@ -106,6 +108,7 @@ const ExperienceFormOutput = ({
               />
             );
           })}
+        <img className='little-logo' src={LittleLogo} alt='' />
       </div>
     </>
   );

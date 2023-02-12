@@ -5,6 +5,7 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import MappedForms from "../MappedForms/MappedForms";
 import MappedFormsForEducation from "../mappedFormsForEducation/MappedFormsForEducation";
 import EducationFormOutput from "../educationFormOutput/EducationFormOutput";
+import LittleLogo from "../../assets/bottom-logo.png";
 const EducationOutput = ({ educationInputs }) => {
   const name = localStorage.getItem("name");
   const surname = localStorage.getItem("surname");
@@ -16,8 +17,6 @@ const EducationOutput = ({ educationInputs }) => {
   const experienceInputs = localStorage.getItem("formData");
 
   const experienceData = experienceInputs ? JSON.parse(experienceInputs) : [];
-
-  console.log(experienceData);
 
   const formatedNumber =
     number.slice(0, 4) +
@@ -102,6 +101,7 @@ const EducationOutput = ({ educationInputs }) => {
           );
         })}
         {/* <div className='bottom-line-after-about-me-remastered'></div> */}
+        <img className='little-logo' src={LittleLogo} alt='' />
       </div>
     </div>
   );

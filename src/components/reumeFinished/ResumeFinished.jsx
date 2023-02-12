@@ -6,7 +6,7 @@ import "./resumeFinished.css";
 import MappedFormsForEducation from "../mappedFormsForEducation/MappedFormsForEducation";
 import EducationFormOutput from "../educationFormOutput/EducationFormOutput";
 import EducationFormOutputForResume from "../educationFormOutputForResume/EducationFormOutputForResume";
-
+import LittleLogo from "../../assets/bottom-logo.png";
 import axios from "axios";
 const ResumeFinished = () => {
   const name = localStorage.getItem("name");
@@ -24,7 +24,6 @@ const ResumeFinished = () => {
   const [validatedImage, setValidatedImage] = useState("");
   const fileSaved = localStorage.getItem("fileSaved");
   const [responseData, setResponseData] = useState(null);
-  const uploadedImageString = JSON.stringify(uploadedImage.slice(5, -1));
 
   useEffect(() => {
     // Retrieving the file from localStorage
@@ -82,14 +81,6 @@ const ResumeFinished = () => {
   }, [validatedImage]);
 
   console.log(responseData);
-  const formatedNumber =
-    number.slice(0, 4) +
-    " " +
-    number.slice(4, 7) +
-    " " +
-    number.slice(7, 10) +
-    " " +
-    number.slice(10, 13);
 
   return (
     responseData && (
@@ -156,6 +147,10 @@ const ResumeFinished = () => {
               );
             })}
           </div>
+          <img className='little-logo-resume' src={LittleLogo} alt='' />
+        </div>
+        <div className='resume-send-successfully'>
+          რეზუმე წარმატებით გაიგზავნა 🥳
         </div>
       </div>
     )

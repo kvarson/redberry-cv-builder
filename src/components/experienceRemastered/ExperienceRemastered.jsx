@@ -6,21 +6,42 @@ import ExperienceFormOutput from "../experienceFormOutput/ExperienceFormOutput";
 import { useNavigate } from "react-router";
 
 const ExperienceRemastered = () => {
+  const [inputs, setInputs] = useState(() => {
+    const savedInputs = JSON.parse(localStorage.getItem("experienceInputs"));
+    return (
+      savedInputs || [
+        {
+          position: "",
+          employer: "",
+          start_date: "",
+          due_date: "",
+          description: "",
+        },
+      ]
+    );
+  });
+
+  const [validationPosition, setValidationPosition] = useState(0);
+  const [validationEmployer, setValidationEmployer] = useState(0);
+  const [validationStartDate, setValidationStartDate] = useState(0);
+  const [validationDueDate, setValidationDueDate] = useState(0);
+  const [validationDescription, setValidationDescription] = useState(0);
+
   const [position, setPosition] = useState("");
   const [employer, setEmployer] = useState("");
   const [startingDate, setStartingDate] = useState("");
   const [endingDate, setEndingDate] = useState("");
   const [description, setDescription] = useState("");
   const [forms, setForms] = useState([]);
-  const [inputs, setInputs] = useState([
-    {
-      position: "",
-      employer: "",
-      start_date: "",
-      due_date: "",
-      description: "",
-    },
-  ]);
+  // const [inputs, setInputs] = useState([
+  //   {
+  //     position: "",
+  //     employer: "",
+  //     start_date: "",
+  //     due_date: "",
+  //     description: "",
+  //   },
+  // ]);
 
   const [renderCount, setRenderCount] = useState(0);
 
@@ -37,6 +58,11 @@ const ExperienceRemastered = () => {
       },
     ]);
   };
+  const handleChevronLeft = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   const navigate = useNavigate();
   const handleNextButton = () => {
     // if validated
@@ -45,7 +71,15 @@ const ExperienceRemastered = () => {
     localStorage.setItem("formData", experienceData);
 
     // navigate to the education page !!
-    navigate("/education");
+    if (
+      validationDescription === 1 &&
+      validationDueDate === 1 &&
+      validationEmployer === 1 &&
+      validationPosition === 1 &&
+      validationStartDate === 1
+    ) {
+      navigate("/education");
+    }
   };
 
   return (
@@ -56,7 +90,10 @@ const ExperienceRemastered = () => {
             <p className='experience-header-text-remastered'>გამოცდილება</p>
             <p className='experience-header-page-number-remastered'>2/3</p>
           </div>
-          <ChevronLeftOutlinedIcon className='back-chevron-left-remastered' />
+          <ChevronLeftOutlinedIcon
+            onClick={handleChevronLeft}
+            className='back-chevron-left-remastered'
+          />
 
           <div className='bottom-line-for-header-remastered'></div>
 
@@ -90,6 +127,16 @@ const ExperienceRemastered = () => {
                 setEndingDate={setEndingDate}
                 description={description}
                 setDescription={setDescription}
+                validationPosition={validationPosition}
+                setValidationPosition={setValidationPosition}
+                validationEmployer={validationEmployer}
+                setValidationEmployer={setValidationEmployer}
+                validationStartDate={validationStartDate}
+                setValidationStartDate={setValidationStartDate}
+                validationDueDate={validationDueDate}
+                setValidationDueDate={setValidationDueDate}
+                validationDescription={validationDescription}
+                setValidationDescription={setValidationDescription}
               />
             );
           })}
@@ -117,19 +164,6 @@ const ExperienceRemastered = () => {
             endingDate={inputs?.due_date}
             description={inputs?.description}
           />
-          {/* {forms.map((outForm, index) => {
-            return (
-              <ExperienceFormOutput
-                forms={forms}
-                key={index}
-                position={position}
-                employer={employer}
-                startingDate={startingDate}
-                endingDate={endingDate}
-                description={description}
-              />
-            );
-          })} */}
         </div>
       </div>
     </div>

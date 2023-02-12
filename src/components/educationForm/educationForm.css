@@ -139,7 +139,12 @@ option {
   margin-left: 149px;
   border: 1px solid #c1c1c1;
 }
-
+.border-green {
+  border-color: #98e37e;
+}
+.border-red {
+  border-color: #f02424;
+}
 select:focus .option-to-disapear {
   display: none;
 }
